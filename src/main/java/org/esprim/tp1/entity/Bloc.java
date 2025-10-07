@@ -3,6 +3,7 @@ package org.esprim.tp1.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,11 +22,11 @@ public class Bloc implements Serializable {
     private Long capaciteBloc; // Assuming Long based on the type
 
     // Bloc (1) to Foyer (1) -> OneToOne (Owning side)
-    @OneToOne
-    @JoinColumn(name = "foyer_id", referencedColumnName = "idFoyer")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "foyer_id")
     private Foyer foyer;
 
     // Bloc (1) to Chambre (*) -> OneToMany
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bloc")
-    private Set<Chambre> chambres;
+    private List<Chambre> chambres;
 }

@@ -14,25 +14,12 @@ import java.util.Set;
 @ToString
 public class Reservation implements Serializable {
 
-    // Note: UML specifies idReservation: String. Using String for ID here.
     @Id
     private String idReservation;
 
     private Date anneeUniversitaire;
     private Boolean estValide;
 
-    // Reservation (*) to Chambre (1) -> ManyToOne (Owning side)
-    @ManyToOne
-    @JoinColumn(name = "chambre_id")
-    private Chambre chambre;
-
-    // Reservation (*) to Etudiant (*) -> ManyToMany (Owning side)
-    // The diagram has a line between Reservation and Etudiant with '*' on both ends.
-    @ManyToMany
-    @JoinTable(
-            name = "reservation_etudiant",
-            joinColumns = @JoinColumn(name = "reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "etudiant_id")
-    )
+    @ManyToMany(cascade = CascadeType.ALL)
     private Set<Etudiant> etudiants;
 }

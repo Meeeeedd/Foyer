@@ -3,6 +3,7 @@ package org.esprim.tp1.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,12 +23,9 @@ public class Foyer implements Serializable {
 
     // Foyer (1) to Universite (1) -> OneToOne (Owning side)
     @OneToOne
-    @JoinColumn(name = "universite_id", referencedColumnName = "idUniversite")
+    @JoinColumn(name = "universite_id")
     private Universite universite;
 
-    // Foyer (1) to Bloc (1) -> OneToOne (Relationship is Foyer 1 to Bloc 1)
-    // Given the diagram shows a line between Foyer and Bloc with '1' and '1',
-    // it's a OneToOne. Let's make Bloc the owning side for practicality.
-    @OneToOne(mappedBy = "foyer") // Non-owning side
-    private Bloc bloc;
+    @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL)
+    private List<Bloc> blocs;
 }

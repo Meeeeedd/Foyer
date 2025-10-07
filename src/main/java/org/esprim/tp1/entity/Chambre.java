@@ -3,6 +3,7 @@ package org.esprim.tp1.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set; // Use Set for better performance in OneToMany/ManyToMany
 
 @Entity
@@ -25,11 +26,9 @@ public class Chambre implements Serializable {
 
     // Chambre (*) to Bloc (1) -> ManyToOne
     @ManyToOne
-    @JoinColumn(name = "bloc_id") // Best practice to specify the foreign key column name
     private Bloc bloc;
 
     // Chambre (1) to Reservation (*) -> OneToMany
-    // Using mappedBy on the 'one' side, as the 'many' side (Reservation) owns the relationship
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "chambre")
-    private Set<Reservation> reservations;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
 }

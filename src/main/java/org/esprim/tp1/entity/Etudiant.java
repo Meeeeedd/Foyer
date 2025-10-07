@@ -1,9 +1,11 @@
 package org.esprim.tp1.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,6 +27,6 @@ public class Etudiant implements Serializable {
     private Date dateNaissance;
 
     // Etudiant (*) to Reservation (*) -> ManyToMany (Non-owning side)
-    @ManyToMany(mappedBy = "etudiants")
-    private Set<Reservation> reservations;
+    @ManyToMany(mappedBy = "etudiants", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
 }
