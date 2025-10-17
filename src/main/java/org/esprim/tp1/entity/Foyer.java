@@ -26,6 +26,6 @@ public class Foyer implements Serializable {
     @JoinColumn(name = "universite_id")
     private Universite universite;
 
-    @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Bloc> blocs;
 }
