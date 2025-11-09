@@ -15,6 +15,7 @@ public class ChambreRestController {
         this.chambreService = chambreService;
     }
 
+    // http://localhost:8081/tpfoyer/chambre/hello
     @GetMapping("/hello")
     public String hello() {
         return "Hello Chambre";
@@ -43,3 +44,4 @@ public class ChambreRestController {
         return chambre;
     }
 }
+ 

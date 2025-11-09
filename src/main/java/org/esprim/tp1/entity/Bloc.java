@@ -23,7 +23,6 @@ public class Bloc implements Serializable {
 
     // Bloc (1) to Foyer (1) -> OneToOne (Owning side)
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "foyer_id")
     private Foyer foyer;
 
     // Bloc (1) to Chambre (*) -> OneToMany

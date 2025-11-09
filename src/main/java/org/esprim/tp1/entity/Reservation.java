@@ -15,7 +15,7 @@ import java.util.Set;
 public class Reservation implements Serializable {
 
     @Id
-    private String idReservation;
+    private Long idReservation;
 
     private Date anneeUniversitaire;
     private Boolean estValide;
