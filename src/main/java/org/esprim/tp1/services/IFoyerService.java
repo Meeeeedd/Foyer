@@ -10,4 +10,9 @@ public interface IFoyerService {
     Foyer addFoyer(Foyer f);
     Foyer updateFoyer(Foyer f);
     void removeFoyer(Long idFoyer);
+
+    Foyer ajouterFoyerEtAffecterAUniversite(
+            Foyer foyer,
+            Long idUniversite
+    );
 }
